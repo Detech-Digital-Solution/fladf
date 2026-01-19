@@ -47,15 +47,19 @@ const Header: React.FC<{
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
 
-  // "Announcements" is added here for the mobile menu but not rendered in the desktop nav below
   const menuLinks = [
     { name: 'Home', path: '/' },
     { name: 'About Us', path: '/about' },
+    { name: 'Projects', path: '/outreach' },
     { name: 'Impact Stories', path: '/impact' },
     { name: 'Newsletter', path: '/newsletter' },
     { name: 'Announcements', path: '/announcements' },
     { name: 'Contact', path: '/contact' },
   ];
+
+  // Desktop links: User requested to remove Projects, Impact Stories, Newsletter, Announcements.
+  // Only 'About Us' remains from the previous set (Home and Contact were already excluded).
+  const desktopLinks = menuLinks.filter(link => link.name === 'About Us');
 
   return (
     <>
@@ -75,17 +79,20 @@ const Header: React.FC<{
             </Link>
 
             {/* Desktop Navigation & Actions */}
-            <div className="hidden md:flex items-center gap-6">
-              <Link
-                to="/about"
-                className={`text-sm font-medium transition-colors ${
-                    location.pathname === '/about' ? 'text-primary font-bold' : 'text-secondary hover:text-primary'
-                }`}
-              >
-                About Us
-              </Link>
+            <div className="hidden lg:flex items-center gap-6">
+              {desktopLinks.map((link) => (
+                <Link
+                    key={link.name}
+                    to={link.path}
+                    className={`text-sm font-medium transition-colors ${
+                        location.pathname === link.path ? 'text-primary font-bold' : 'text-secondary hover:text-primary'
+                    }`}
+                >
+                    {link.name}
+                </Link>
+              ))}
               
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 ml-2">
                 <button
                     onClick={onDonate}
                     className="px-6 py-2.5 bg-primary text-white rounded-full text-sm font-bold hover:bg-red-700 transition-all shadow-lg shadow-red-500/20 active:scale-95"
@@ -112,7 +119,7 @@ const Header: React.FC<{
             </div>
 
             {/* Mobile Hamburger (Only visible on small screens) */}
-            <div className="flex md:hidden items-center gap-4">
+            <div className="flex lg:hidden items-center gap-4">
                  <button
                     className="p-2 text-secondary hover:bg-gray-100 rounded-full transition-colors"
                     onClick={() => setIsMenuOpen(true)}
@@ -227,7 +234,7 @@ const Footer: React.FC = () => {
             <h6 className="text-white font-bold mb-6 text-sm uppercase tracking-wider">Quick Links</h6>
             <ul className="space-y-3 text-sm text-gray-400">
               <li><Link to="/about" className="hover:text-primary transition-colors">Our History</Link></li>
-              <li><Link to="/newsletter" className="hover:text-primary transition-colors">Project Portfolio</Link></li>
+              <li><Link to="/outreach" className="hover:text-primary transition-colors">Project Portfolio</Link></li>
               <li><Link to="/impact" className="hover:text-primary transition-colors">Annual Reports</Link></li>
               <li><Link to="/announcements" className="hover:text-primary transition-colors">Announcements</Link></li>
               <li><Link to="/contact" className="hover:text-primary transition-colors">Contact Us</Link></li>

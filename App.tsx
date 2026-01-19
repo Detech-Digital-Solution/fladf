@@ -7,6 +7,7 @@ import Contact from './pages/Contact';
 import Impact from './pages/Impact';
 import Newsletter from './pages/Newsletter';
 import Announcements from './pages/Announcements';
+import Outreach from './pages/Outreach';
 
 const App: React.FC = () => {
   return (
@@ -19,6 +20,7 @@ const App: React.FC = () => {
           <Route path="/impact" element={<Impact />} />
           <Route path="/newsletter" element={<Newsletter />} />
           <Route path="/announcements" element={<Announcements />} />
+          <Route path="/outreach" element={<Outreach />} />
         </Routes>
       </Layout>
     </Router>

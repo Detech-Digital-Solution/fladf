@@ -2,9 +2,12 @@ export interface Project {
   id: string;
   title: string;
   description: string;
+  content?: string; // Full text for detail view
   image: string;
   category: string;
-  link: string;
+  link?: string;
+  location?: string;
+  stats?: { label: string; value: string }[];
 }
 
 export interface NewsItem {

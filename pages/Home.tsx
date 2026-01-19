@@ -121,14 +121,17 @@ const Home: React.FC = () => {
           </div>
           <div className="flex gap-8 overflow-x-auto pb-12 custom-scrollbar snap-x -mx-4 px-4 sm:mx-0 sm:px-0">
             {[{
+                id: 'clean-water-initiative',
                 title: "Clean Water Initiative",
                 desc: "Implementing sustainable filtration systems in remote villages across Sub-Saharan Africa.",
                 img: "https://lh3.googleusercontent.com/aida-public/AB6AXuC868qfgo_LkJ1T6Aa-CGyhobX-Raj4mfu3yEaXkFpzEWtl8135X9cJYeOswuJN3FQ3LHaINFLE0guv9zQKi6fywqXGs3xp7sbcGRsuLPMpRCt1488WrPqNcF6FhQEi1v0VYMG3jtSLXEqYfk68ljTZWd24LYGDJ-x0acR7K9X8XD4c5e_iBZ1OnZRYXZH1yIqSKA4Iwi1PBi5_37uqEGYtBgJswVm5G0dtf-5dtjq3GRCoWemTVLfBSWal_6a4D4XOMMZWNWoTZ5Wr"
             }, {
+                id: 'education-first',
                 title: "Education First",
                 desc: "Building smart classrooms and providing digital literacy training to underprivileged youth.",
                 img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAfIhV-15Kypay6xBTK98dgjCUo0QGfETNHnA9Ui1T9KpY26eXCqEVkWOOO2nEr83yLmuqjVxnS7jruwfWO83j-pSgPgFx2urKyX85KDLxPGTPWp1tXqNIx7yUzoAMKdxkN2gB7QTYGL_39b5VWZHNV2g5wvO59qZO3BvAaqnCgFDUAblE91v0OrngiJQFMdvRQ4Ve3VF419p00tG4ZyPQOFwTlKfaFv_A85XvBHNFmpCZXr2TwC3JMakHO_jQCNu-oNBPjOvp1eLKA"
             }, {
+                id: 'urban-farming',
                 title: "Urban Farming",
                 desc: "Reclaiming urban spaces to create sustainable food sources for metropolitan communities.",
                 img: "https://lh3.googleusercontent.com/aida-public/AB6AXuBL5QW8rMSNdnUU8cFCjKiwjXSuUmfBwDXF81RcAUEh7PqathQ3TzmW4g9pZbURwDod7wjKNlYsU1_dG3OobGPAoDo_zqQQ2I4LeHKxPS9mD6y28M_3OyiIEoLl224H4PGuwRZR6413ys84_e13CnjYyk6WOZcWV3nNSSSM7lhS7SeTBymiDjbH2oUGp-SD69pY2gS8Jarl4A5SIoJGvfvYVCPTj2fkbsvMfuZukyZewf4ZN8JV9r4q5Wi9XkzXsM6zXAeCQ_iD6uLi"
@@ -140,7 +143,7 @@ const Home: React.FC = () => {
                 <div className="p-8">
                     <h4 className="text-xl font-display font-bold mb-3 text-secondary">{project.title}</h4>
                     <p className="text-neutral-light text-sm leading-relaxed mb-6 font-light">{project.desc}</p>
-                    <Link to="/newsletter" className="text-primary text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">Read Project Details <span className="material-symbols-outlined text-sm">arrow_forward</span></Link>
+                    <Link to={`/outreach?id=${project.id}`} className="text-primary text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">Read Project Details <span className="material-symbols-outlined text-sm">arrow_forward</span></Link>
                 </div>
                 </div>
             ))}
@@ -252,7 +255,7 @@ const Home: React.FC = () => {
                 <div>
                     <h2 className="font-display text-4xl font-bold mb-6 text-secondary">Common Questions</h2>
                     <p className="text-neutral-light mb-10 text-lg font-light leading-relaxed">Find answers to the most frequent inquiries about our operations and how you can get involved.</p>
-                    <button className="px-8 py-4 bg-primary text-white rounded-xl font-bold hover:bg-red-700 hover:shadow-lg transition-all">Ask your question</button>
+                    <Link to="/contact" className="inline-block px-8 py-4 bg-primary text-white rounded-xl font-bold hover:bg-red-700 hover:shadow-lg transition-all">Ask your question</Link>
                 </div>
                 <div className="space-y-6">
                     {[{
