@@ -273,11 +273,13 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-xs text-gray-500 uppercase tracking-widest">© 2024 The Flag Forum. All rights reserved.</p>
+          <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
+             <p className="text-xs text-gray-500 uppercase tracking-widest">© {new Date().getFullYear()} The Flag Forum. All rights reserved.</p>
+          </div>
           <div className="text-gray-500 text-xs flex gap-4">
-            <span>Geneva</span>
-            <span>New York</span>
-            <span>Nairobi</span>
+             <p className="text-xs text-gray-500 uppercase tracking-widest font-bold">
+                Made with ❤️ by <a href="https://www.detech.live" target="_blank" rel="noopener noreferrer" className="hover:text-[#0066A5] transition-colors">Detech</a>
+             </p>
           </div>
         </div>
       </div>

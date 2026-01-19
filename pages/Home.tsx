@@ -220,30 +220,32 @@ const Home: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <h2 className="font-display text-3xl md:text-4xl font-bold text-center mb-20">Community Voices</h2>
             <div className="grid md:grid-cols-2 gap-12">
-                <div className="bg-white/5 border border-white/10 p-10 rounded-3xl backdrop-blur-md relative hover:bg-white/10 transition-colors">
+                <Link to="/impact?id=sarah-jenkins" className="block bg-white/5 border border-white/10 p-10 rounded-3xl backdrop-blur-md relative hover:bg-white/10 transition-colors group cursor-pointer">
                     <span className="material-symbols-outlined text-primary text-6xl absolute -top-5 -left-4 opacity-80 bg-secondary rounded-full">format_quote</span>
                     <h4 className="text-xl font-bold mb-4 font-display">Life-changing Support</h4>
                     <p className="text-lg mb-8 font-light text-gray-200 leading-relaxed">"The Forum's commitment to our local project was the catalyst we needed to reach sustainability. Their guidance and network are unparalleled."</p>
                     <div className="flex items-center gap-4 border-t border-white/10 pt-6">
                         <img alt="Sarah J." className="w-12 h-12 rounded-full ring-2 ring-primary object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC058TYOGVrNBtHjvlqjNo_RLirR-ZUPO-YdbIWsNWo-Rs4Q7yE5Yx3y0HWzwhdinhrAQYxLqCF4GNMoWCTLh1iLdOJEAfV3H3shrhMvQBnmX5TZEk9d6P_uMz8qGrOptXbb_sE5a9nE5hVjhXedy46Q5YGoA-QYW7fE8VkjRMbjNhj9dsuyM6L6K-44NeEFK5536H7ItP8Zry-RfZA5bkwL43nL1XUFJQ_lNZOdzl61toahJvdKNwhGtWfgPu_lXGucX1ftcU_BtRx" />
                         <div>
-                            <p className="font-bold text-white">Sarah Jenkins</p>
+                            <p className="font-bold text-white group-hover:underline">Sarah Jenkins</p>
                             <p className="text-xs text-gray-300 uppercase tracking-wider">Project Director, Oasis Hub</p>
                         </div>
+                        <span className="ml-auto material-symbols-outlined text-gray-400 group-hover:text-white group-hover:translate-x-1 transition-all">arrow_forward</span>
                     </div>
-                </div>
-                <div className="bg-white/5 border border-white/10 p-10 rounded-3xl backdrop-blur-md relative hover:bg-white/10 transition-colors">
+                </Link>
+                <Link to="/impact?id=mark-davidson" className="block bg-white/5 border border-white/10 p-10 rounded-3xl backdrop-blur-md relative hover:bg-white/10 transition-colors group cursor-pointer">
                     <span className="material-symbols-outlined text-primary text-6xl absolute -top-5 -left-4 opacity-80 bg-secondary rounded-full">format_quote</span>
                     <h4 className="text-xl font-bold mb-4 font-display">Strategic Partnership</h4>
                     <p className="text-lg mb-8 font-light text-gray-200 leading-relaxed">"Working with The Flag Forum has bridged gaps between our corporate social goals and on-the-ground needs in ways we never thought possible."</p>
                     <div className="flex items-center gap-4 border-t border-white/10 pt-6">
                         <img alt="Mark D." className="w-12 h-12 rounded-full ring-2 ring-primary object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDn_92hgJyBUFdCGahFvh0MZXV_KYYTFmFyysQeUSpb-Dfj6ZyUxJMGt-dKenW7nFe9w-jEqufRx9FSYWlCLxk1OpRe389IO0bk7AzKskjTQ6D3AJ3tcZZIDMba20oBmmJuMYh1BwIYLe6qHOWy-Oh42pGpHfrzwrSu33_mf-hh30V-hdrG5i7-NJRlnRWe87iesZ4hQ3MXYixNCzMhO6N_8jnU4zLoVROBMKcqAWz-Z-mchwGWcLCFu2H6ojDb3CZdqU_gBd1wqgt7" />
                         <div>
-                            <p className="font-bold text-white">Mark Davidson</p>
+                            <p className="font-bold text-white group-hover:underline">Mark Davidson</p>
                             <p className="text-xs text-gray-300 uppercase tracking-wider">Head of CSR, Global Tech</p>
                         </div>
+                         <span className="ml-auto material-symbols-outlined text-gray-400 group-hover:text-white group-hover:translate-x-1 transition-all">arrow_forward</span>
                     </div>
-                </div>
+                </Link>
             </div>
         </div>
       </section>
