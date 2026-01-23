@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { NewsItem } from '../types';
+import { Link } from 'react-router-dom';
 
 const newsletters: NewsItem[] = [
     {
@@ -107,6 +108,17 @@ const Newsletter: React.FC = () => {
     <div className="bg-background-light">
       <header className="relative bg-white border-b border-gray-200 py-20 lg:py-24">
         <div className="absolute inset-0 bg-gray-50 opacity-50 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+        
+         {/* Link to Home Newsletter Section */}
+        <div className="absolute top-10 left-4 sm:left-8 z-20">
+            <Link to="/#newsletter" className="inline-flex items-center gap-2 text-slate-500 hover:text-primary transition-colors font-medium text-sm group">
+                <span className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+                    <span className="material-symbols-outlined text-lg">arrow_back</span>
+                </span>
+                <span className="hidden sm:inline">Back to Home</span>
+            </Link>
+        </div>
+
         <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
           <span className="text-primary font-bold tracking-widest text-xs uppercase mb-4 block">Archive & Resources</span>
           <h1 className="font-display text-5xl md:text-7xl font-bold mb-6 text-secondary leading-tight">Newsletter Archive</h1>

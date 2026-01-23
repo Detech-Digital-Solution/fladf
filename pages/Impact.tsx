@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, Link } from 'react-router-dom';
 
-interface Story {
+export interface Story {
   id: string;
   cat: string;
   title: string;
@@ -13,7 +13,7 @@ interface Story {
   fullStory: string;
 }
 
-const impactStories: Story[] = [
+export const impactStories: Story[] = [
     {
         id: "sarah-jenkins",
         cat: "Community",
@@ -124,6 +124,17 @@ const Impact: React.FC = () => {
     <div className="bg-background-subtle">
       <header className="relative pt-24 pb-16 overflow-hidden bg-white border-b border-gray-100">
         <div className="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+        
+        {/* Link to Home Community Voices */}
+        <div className="absolute top-10 left-4 sm:left-8 z-20">
+            <Link to="/#community-voices" className="inline-flex items-center gap-2 text-slate-500 hover:text-primary transition-colors font-medium text-sm group">
+                <span className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+                    <span className="material-symbols-outlined text-lg">arrow_back</span>
+                </span>
+                <span className="hidden sm:inline">Back to Home</span>
+            </Link>
+        </div>
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <span className="inline-block py-1 px-3 rounded-full bg-primary/5 text-primary text-xs font-bold tracking-widest uppercase mb-6">Voices of Change</span>
           <h1 className="font-display font-medium text-5xl md:text-7xl mb-8 text-slate-900 leading-tight">Impact Stories</h1>

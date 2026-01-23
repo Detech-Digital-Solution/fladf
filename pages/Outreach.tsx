@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import { Project } from '../types';
+import { DonateModal, ParticipateModal } from '../components/Modals';
 
 const projectsData: Project[] = [
   {
@@ -15,7 +16,10 @@ const projectsData: Project[] = [
         { label: "Wells Built", value: "45" },
         { label: "People Served", value: "12,000+" },
         { label: "Maintenance Teams", value: "15" }
-    ]
+    ],
+    allowDonation: true,
+    allowParticipation: true,
+    cmsLink: "https://google.com"
   },
   {
     id: 'education-first',
@@ -29,7 +33,9 @@ const projectsData: Project[] = [
         { label: "Schools Upgraded", value: "32" },
         { label: "Tablets Donated", value: "5,000" },
         { label: "Graduates", value: "1,200" }
-    ]
+    ],
+    allowDonation: true,
+    allowParticipation: true
   },
   {
     id: 'urban-farming',
@@ -43,7 +49,9 @@ const projectsData: Project[] = [
         { label: "Gardens Created", value: "18" },
         { label: "Produce Harvested", value: "25 Tons" },
         { label: "Youth Employed", value: "85" }
-    ]
+    ],
+    allowDonation: true,
+    allowParticipation: true
   },
   {
     id: 'healthcare-access',
@@ -57,7 +65,8 @@ const projectsData: Project[] = [
         { label: "Patients Treated", value: "30,000+" },
         { label: "Miles Traveled", value: "150k" },
         { label: "Vaccines Given", value: "12,000" }
-    ]
+    ],
+    allowDonation: true
   },
   {
     id: 'women-empowerment',
@@ -71,7 +80,9 @@ const projectsData: Project[] = [
         { label: "Loans Issued", value: "$2.5M" },
         { label: "Businesses Started", value: "4,500" },
         { label: "Repayment Rate", value: "98%" }
-    ]
+    ],
+    allowDonation: true,
+    allowParticipation: true
   }
 ];
 
@@ -79,6 +90,9 @@ const Outreach: React.FC = () => {
   const [searchParams] = useSearchParams();
   const id = searchParams.get('id');
   const activeProject = projectsData.find(p => p.id === id);
+
+  const [donateOpen, setDonateOpen] = useState(false);
+  const [participateOpen, setParticipateOpen] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -122,10 +136,39 @@ const Outreach: React.FC = () => {
                         Many communities face systemic barriers that prevent sustainable growth. This project directly addresses these challenges by implementing long-term, community-led solutions rather than temporary fixes.
                     </p>
 
-                    <div className="pt-8 border-t border-gray-100">
-                        <button className="px-8 py-4 bg-primary text-white rounded-xl font-bold hover:bg-red-700 transition-all shadow-lg shadow-red-500/20">
-                            Support This Project
-                        </button>
+                    <div className="pt-8 border-t border-gray-100 flex flex-wrap gap-4">
+                        {/* Conditional Rendering for Buttons based on CMS settings */}
+                        {activeProject.allowDonation !== false && (
+                            <button 
+                                onClick={() => setDonateOpen(true)}
+                                className="px-8 py-3.5 bg-primary text-white rounded-xl font-bold hover:bg-red-700 transition-all shadow-lg shadow-red-500/20 flex items-center gap-2"
+                            >
+                                <span className="material-symbols-outlined">volunteer_activism</span>
+                                Donate
+                            </button>
+                        )}
+                        
+                        {activeProject.allowParticipation !== false && (
+                            <button 
+                                onClick={() => setParticipateOpen(true)}
+                                className="px-8 py-3.5 bg-secondary text-white rounded-xl font-bold hover:bg-slate-800 transition-all shadow-lg flex items-center gap-2"
+                            >
+                                <span className="material-symbols-outlined">handshake</span>
+                                Participate
+                            </button>
+                        )}
+
+                        {activeProject.cmsLink && (
+                            <a 
+                                href={activeProject.cmsLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="px-8 py-3.5 bg-white border border-gray-200 text-slate-600 rounded-xl font-bold hover:bg-gray-50 transition-all flex items-center gap-2"
+                            >
+                                <span className="material-symbols-outlined text-gray-400">link</span>
+                                Learn More
+                            </a>
+                        )}
                     </div>
                 </div>
 
@@ -161,6 +204,9 @@ const Outreach: React.FC = () => {
                     </div>
                 </div>
             </div>
+            
+            <DonateModal isOpen={donateOpen} onClose={() => setDonateOpen(false)} />
+            <ParticipateModal isOpen={participateOpen} onClose={() => setParticipateOpen(false)} />
         </div>
       </div>
     );
@@ -169,8 +215,17 @@ const Outreach: React.FC = () => {
   // List View
   return (
     <div className="bg-background-subtle min-h-screen">
-      <header className="bg-white py-20 border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 text-center">
+      <header className="bg-white py-20 border-b border-gray-200 relative">
+        <div className="absolute top-10 left-4 sm:left-8 z-20">
+            <Link to="/#community-outreach" className="inline-flex items-center gap-2 text-slate-500 hover:text-primary transition-colors font-medium text-sm group">
+                <span className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+                    <span className="material-symbols-outlined text-lg">arrow_back</span>
+                </span>
+                <span className="hidden sm:inline">Back to Home</span>
+            </Link>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 text-center relative z-10">
             <span className="text-primary font-bold tracking-widest text-xs uppercase mb-4 block animate-fade-in-up">Global Initiatives</span>
             <h1 className="text-4xl md:text-6xl font-display font-bold text-secondary mb-6 animate-fade-in-up delay-100">Our Projects</h1>
             <p className="text-lg text-slate-500 max-w-2xl mx-auto animate-fade-in-up delay-200">

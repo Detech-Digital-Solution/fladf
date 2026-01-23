@@ -50,16 +50,12 @@ const Header: React.FC<{
   const menuLinks = [
     { name: 'Home', path: '/' },
     { name: 'About Us', path: '/about' },
-    { name: 'Projects', path: '/outreach' },
+    { name: 'COPs', path: '/outreach' },
     { name: 'Impact Stories', path: '/impact' },
-    { name: 'Newsletter', path: '/newsletter' },
+    { name: 'Newsletters', path: '/newsletter' },
     { name: 'Announcements', path: '/announcements' },
     { name: 'Contact', path: '/contact' },
   ];
-
-  // Desktop links: User requested to remove Projects, Impact Stories, Newsletter, Announcements.
-  // Only 'About Us' remains from the previous set (Home and Contact were already excluded).
-  const desktopLinks = menuLinks.filter(link => link.name === 'About Us');
 
   return (
     <>
@@ -80,42 +76,32 @@ const Header: React.FC<{
 
             {/* Desktop Navigation & Actions */}
             <div className="hidden lg:flex items-center gap-6">
-              {desktopLinks.map((link) => (
-                <Link
-                    key={link.name}
-                    to={link.path}
-                    className={`text-sm font-medium transition-colors ${
-                        location.pathname === link.path ? 'text-primary font-bold' : 'text-secondary hover:text-primary'
-                    }`}
-                >
-                    {link.name}
-                </Link>
-              ))}
+              <Link to="/about" className="text-sm font-medium text-secondary hover:text-primary transition-colors">About Us</Link>
+              <Link to="/outreach" className="text-sm font-medium text-secondary hover:text-primary transition-colors">COPs</Link>
+              <Link to="/newsletter" className="text-sm font-medium text-secondary hover:text-primary transition-colors">Newsletters</Link>
               
-              <div className="flex items-center gap-3 ml-2">
-                <button
-                    onClick={onDonate}
-                    className="px-6 py-2.5 bg-primary text-white rounded-full text-sm font-bold hover:bg-red-700 transition-all shadow-lg shadow-red-500/20 active:scale-95"
+              <div className="flex items-center gap-3 ml-4">
+                <Link 
+                    to="/contact"
+                    className="px-6 py-2.5 border-2 border-neutral text-neutral rounded-full text-sm font-bold hover:bg-neutral hover:text-white transition-all active:scale-95"
                 >
-                    Donate
-                </button>
-                
+                    Contact Us
+                </Link>
+
                 <button
                     onClick={onParticipate}
                     className="px-6 py-2.5 border-2 border-secondary text-secondary bg-transparent rounded-full text-sm font-bold hover:bg-secondary hover:text-white transition-all active:scale-95"
                 >
                     Participate
                 </button>
+
+                <button
+                    onClick={onDonate}
+                    className="px-6 py-2.5 border-2 border-primary text-primary bg-transparent rounded-full text-sm font-bold hover:bg-primary hover:text-white transition-all active:scale-95"
+                >
+                    Donate
+                </button>
               </div>
-
-              <div className="w-px h-8 bg-gray-200 mx-2"></div>
-
-              <button
-                className="p-2 text-secondary hover:bg-gray-100 rounded-full transition-colors group"
-                onClick={() => setIsMenuOpen(true)}
-              >
-                <span className="material-symbols-outlined text-3xl group-hover:text-primary transition-colors">menu</span>
-              </button>
             </div>
 
             {/* Mobile Hamburger (Only visible on small screens) */}

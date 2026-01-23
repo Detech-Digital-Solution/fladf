@@ -8,6 +8,7 @@ import Impact from './pages/Impact';
 import Newsletter from './pages/Newsletter';
 import Announcements from './pages/Announcements';
 import Outreach from './pages/Outreach';
+import LatestUpdates from './pages/LatestUpdates';
 
 const App: React.FC = () => {
   return (
@@ -21,6 +22,7 @@ const App: React.FC = () => {
           <Route path="/newsletter" element={<Newsletter />} />
           <Route path="/announcements" element={<Announcements />} />
           <Route path="/outreach" element={<Outreach />} />
+          <Route path="/latest-updates" element={<LatestUpdates />} />
         </Routes>
       </Layout>
     </Router>

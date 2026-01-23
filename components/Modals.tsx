@@ -6,14 +6,15 @@ interface ModalProps {
   title: string;
   subtitle: string;
   children: React.ReactNode;
+  maxWidth?: string;
 }
 
-const BaseModal: React.FC<ModalProps> = ({ isOpen, onClose, title, subtitle, children }) => {
+const BaseModal: React.FC<ModalProps> = ({ isOpen, onClose, title, subtitle, children, maxWidth = "max-w-lg" }) => {
   if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-secondary/40 backdrop-blur-sm animate-fade-in-up">
-      <div className="bg-white w-full max-w-lg rounded-2xl p-0 shadow-2xl relative overflow-hidden">
+      <div className={`bg-white w-full ${maxWidth} rounded-2xl p-0 shadow-2xl relative overflow-hidden transition-all`}>
         <button
           onClick={onClose}
           className="absolute top-4 right-4 z-10 p-2 rounded-full bg-gray-100 text-gray-400 hover:text-secondary hover:bg-gray-200 transition-all"
@@ -51,46 +52,53 @@ export const DonateModal: React.FC<{ isOpen: boolean; onClose: () => void }> = (
       onClose={onClose}
       title="Support Our Mission"
       subtitle="Please fill in your details to contribute."
+      maxWidth="max-w-2xl"
     >
-      <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); onClose(); }}>
-        <div className="space-y-1.5">
-            <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider">Full Name</label>
-            <div className="relative group">
-                 <span className="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-primary transition-colors text-[20px]">person</span>
-                 <input className="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 focus:border-primary focus:ring-1 focus:ring-primary rounded-xl transition-all placeholder:text-gray-400 text-sm font-medium outline-none" placeholder="Jane Doe" type="text" />
+      <form className="space-y-6" onSubmit={(e) => { e.preventDefault(); onClose(); }}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-1.5">
+                <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider">Full Name</label>
+                <div className="relative group">
+                    <span className="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-primary transition-colors text-[20px]">person</span>
+                    <input className="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 focus:border-primary focus:ring-1 focus:ring-primary rounded-xl transition-all placeholder:text-gray-400 text-sm font-medium outline-none" placeholder="Jane Doe" type="text" />
+                </div>
+            </div>
+
+            <div className="space-y-1.5">
+                <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider">Email Address</label>
+                <div className="relative group">
+                    <span className="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-primary transition-colors text-[20px]">mail</span>
+                    <input className="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 focus:border-primary focus:ring-1 focus:ring-primary rounded-xl transition-all placeholder:text-gray-400 text-sm font-medium outline-none" placeholder="jane@example.com" type="email" />
+                </div>
             </div>
         </div>
 
         <div className="space-y-1.5">
-            <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider">Email Address</label>
+            <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider">Description <span className="text-gray-400 font-normal normal-case">(Optional)</span></label>
             <div className="relative group">
-                 <span className="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-primary transition-colors text-[20px]">mail</span>
-                 <input className="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 focus:border-primary focus:ring-1 focus:ring-primary rounded-xl transition-all placeholder:text-gray-400 text-sm font-medium outline-none" placeholder="jane@example.com" type="email" />
+                 <span className="material-symbols-outlined absolute left-3.5 top-3.5 text-gray-400 group-focus-within:text-primary transition-colors text-[20px]">description</span>
+                 <textarea className="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 focus:border-primary focus:ring-1 focus:ring-primary rounded-xl transition-all placeholder:text-gray-400 text-sm font-medium outline-none resize-none" placeholder="Tell us about your contribution or cause..." rows={3}></textarea>
             </div>
         </div>
 
-        <div className="space-y-3 pt-2">
-            <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider">Donation Amount</label>
-            <div className="grid grid-cols-4 gap-3">
-                <button type="button" className="py-2.5 rounded-lg border border-gray-200 text-gray-600 font-semibold hover:border-primary hover:text-primary hover:bg-red-50 transition-all text-sm">$25</button>
-                <button type="button" className="py-2.5 rounded-lg border border-gray-200 text-gray-600 font-semibold hover:border-primary hover:text-primary hover:bg-red-50 transition-all text-sm">$50</button>
-                <button type="button" className="py-2.5 rounded-lg bg-primary text-white font-bold shadow-lg shadow-red-500/20 text-sm">$100</button>
-                <button type="button" className="py-2.5 rounded-lg border border-gray-200 text-gray-600 font-semibold hover:border-primary hover:text-primary hover:bg-red-50 transition-all text-sm">Other</button>
+        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-100 rounded-xl p-4 flex items-center gap-4 shadow-sm">
+            <div className="w-10 h-10 rounded-full bg-white text-secondary flex items-center justify-center flex-shrink-0 shadow-sm">
+                <span className="material-symbols-outlined">mark_email_read</span>
+            </div>
+            <div>
+                <p className="text-secondary font-bold text-sm">We will contact you via email</p>
+                <p className="text-slate-500 text-xs mt-0.5">Our team will reach out shortly to finalize your contribution details securely.</p>
             </div>
         </div>
 
-        <div className="pt-4">
+        <div className="pt-2">
           <button
             type="submit"
-            className="w-full py-3.5 bg-primary text-white font-bold rounded-xl shadow-lg hover:bg-red-700 transition-all flex items-center justify-center gap-2"
+            className="w-full py-3.5 bg-primary text-white font-bold rounded-xl shadow-lg hover:bg-red-700 transition-all flex items-center justify-center gap-2 active:scale-[0.98]"
           >
             <span>Complete Donation</span>
             <span className="material-symbols-outlined text-sm">arrow_forward</span>
           </button>
-           <div className="mt-4 flex items-center justify-center gap-2 text-gray-400">
-                <span className="material-symbols-outlined text-[16px]">lock</span>
-                <p className="text-[10px] font-medium uppercase tracking-wide">Secure SSL Encrypted Payment</p>
-            </div>
         </div>
       </form>
     </BaseModal>
@@ -146,6 +154,14 @@ export const ParticipateModal: React.FC<{ isOpen: boolean; onClose: () => void }
                 <div className="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
                      <span className="material-symbols-outlined text-gray-400 text-[20px]">expand_more</span>
                 </div>
+            </div>
+        </div>
+
+        <div className="space-y-1.5">
+            <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider">Description <span className="text-gray-400 font-normal normal-case">(Optional)</span></label>
+            <div className="relative group">
+                 <span className="material-symbols-outlined absolute left-3.5 top-3.5 text-gray-400 group-focus-within:text-primary transition-colors text-[20px]">description</span>
+                 <textarea className="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 focus:border-primary focus:ring-1 focus:ring-primary rounded-xl transition-all placeholder:text-gray-400 text-sm font-medium outline-none resize-none" placeholder="Tell us more about how you'd like to help..." rows={3}></textarea>
             </div>
         </div>
 

@@ -8,6 +8,9 @@ export interface Project {
   link?: string;
   location?: string;
   stats?: { label: string; value: string }[];
+  allowDonation?: boolean;
+  allowParticipation?: boolean;
+  cmsLink?: string; // External link managed by CMS (e.g. Google Link)
 }
 
 export interface NewsItem {

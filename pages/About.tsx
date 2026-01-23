@@ -1,10 +1,22 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const About: React.FC = () => {
   return (
     <div className="bg-white">
       <header className="relative h-[65vh] min-h-[500px] flex items-center justify-center text-white bg-cover bg-center" style={{backgroundImage: 'linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.7)), url(https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&fit=crop&q=80&w=3400)'}}>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-slate-900/50"></div>
+        
+        {/* Link to Home */}
+        <div className="absolute top-10 left-4 sm:left-8 z-20">
+            <Link to="/" className="inline-flex items-center gap-2 text-slate-200 hover:text-white transition-colors font-medium text-sm group">
+                <span className="w-8 h-8 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center group-hover:bg-white/20 transition-colors border border-white/10">
+                    <span className="material-symbols-outlined text-lg">arrow_back</span>
+                </span>
+                <span className="hidden sm:inline">Back to Home</span>
+            </Link>
+        </div>
+
         <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
           <span className="inline-block py-1 px-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-sm font-medium tracking-wide mb-6">EST. 2015</span>
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 tracking-tight leading-tight font-display">
@@ -25,9 +37,9 @@ const About: React.FC = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
             {[
-                { title: "Our Mission", icon: "flag", color: "primary", desc: "To empower underserved communities through strategic outreach, providing educational resources, and fostering sustainable local projects that create lasting equity." },
-                { title: "Our Vision", icon: "visibility", color: "accent", desc: "A world where every individual has the agency, opportunity, and resources to contribute meaningfully to a thriving, just, and equitable global society." },
-                { title: "Our Goals", icon: "ads_click", color: "secondary", desc: "Reach 1 million participants by 2030, establish active community hubs in 50 strategic regions, and foster a connected global network of changemakers." }
+                { title: "Character Development", icon: "psychology", color: "primary", desc: "Fostering integrity, resilience, and ethical leadership to empower individuals to make positive choices." },
+                { title: "Personality Enhancement", icon: "sentiment_satisfied", color: "accent", desc: "Workshops designed to build confidence, emotional intelligence, and interpersonal skills for personal growth." },
+                { title: "English Proficiency", icon: "translate", color: "secondary", desc: "Advanced language training to master global communication and unlock international opportunities." }
             ].map((item, idx) => (
                 <div key={idx} className="group relative bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                     <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${item.color === 'primary' ? 'from-primary to-blue-400' : item.color === 'accent' ? 'from-accent to-red-400' : 'from-secondary to-slate-400'} rounded-t-2xl`}></div>
@@ -98,31 +110,66 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      <section className="py-24 bg-slate-50 border-t border-slate-200">
+      {/* Team Section */}
+      <section className="py-24 bg-white border-t border-slate-200">
         <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-16">
-                <h2 className="text-4xl font-bold text-secondary mb-4 font-display">Our Team</h2>
+                <h2 className="text-4xl font-bold text-slate-900 mb-4 font-display">The Team</h2>
                 <p className="text-slate-500 text-lg max-w-2xl mx-auto font-light">Dedicated professionals working tirelessly to make our vision a reality.</p>
             </div>
-             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 justify-items-center">
+             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
                 {[
-                    {name: "Jennifer Liu", role: "Communications Director", img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600"},
-                    {name: "David Martinez", role: "Program Coordinator", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=600"},
-                    {name: "Emily Johnson", role: "Volunteer Manager", img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=600"},
-                    {name: "Alex Kim", role: "Community Outreach", img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=600"},
-                    {name: "Rachel Green", role: "Development Officer", img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=600"},
-                    {name: "Thomas Anderson", role: "Operations Manager", img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=600"}
+                    {
+                        name: "Jennifer Liu", 
+                        role: "Communications Director", 
+                        desc: "Jennifer leads our global messaging strategy, ensuring our stories reach the right audiences with clarity and impact.",
+                        img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600"
+                    },
+                    {
+                        name: "David Martinez", 
+                        role: "Program Coordinator", 
+                        desc: "David oversees on-the-ground operations for our education initiatives, managing logistics and partner relationships.",
+                        img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=600"
+                    },
+                    {
+                        name: "Emily Johnson", 
+                        role: "Volunteer Manager", 
+                        desc: "Emily coordinates our thousands of volunteers worldwide, matching passion with purpose to drive efficiency.",
+                        img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=600"
+                    },
+                    {
+                        name: "Alex Kim", 
+                        role: "Community Outreach", 
+                        desc: "Alex focuses on building trust within new regions, facilitating dialogue and understanding local needs.",
+                        img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=600"
+                    },
+                    {
+                        name: "Rachel Green", 
+                        role: "Development Officer", 
+                        desc: "Rachel spearheads our fundraising efforts, securing the vital resources needed to expand our mission.",
+                        img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=600"
+                    },
+                    {
+                        name: "Thomas Anderson", 
+                        role: "Operations Manager", 
+                        desc: "Thomas ensures our internal systems run smoothly, from finance to HR, optimizing our organizational health.",
+                        img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=600"
+                    }
                 ].map((member, idx) => (
-                    <div key={idx} className="flex flex-col items-center group w-full max-w-[200px]">
-                        <div className="relative w-full aspect-square mb-5 overflow-hidden rounded-2xl shadow-md bg-white">
+                    <div key={idx} className="flex bg-white rounded-xl overflow-hidden border border-slate-200 hover:shadow-xl transition-all duration-300 group">
+                        <div className="w-1/3 min-w-[120px] md:min-w-[150px] relative overflow-hidden">
                              <img 
                                 alt={member.name} 
                                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
                                 src={member.img} 
                              />
+                             <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors"></div>
                         </div>
-                         <h5 className="font-bold text-secondary text-base leading-tight">{member.name}</h5>
-                         <p className="text-xs text-slate-500 font-medium mt-1.5 text-center leading-relaxed">{member.role}</p>
+                        <div className="w-2/3 p-6 flex flex-col justify-center">
+                             <h5 className="font-bold text-slate-900 text-xl font-display mb-1">{member.name}</h5>
+                             <p className="text-primary font-medium text-sm mb-3 uppercase tracking-wide">{member.role}</p>
+                             <p className="text-slate-500 text-sm leading-relaxed">{member.desc}</p>
+                        </div>
                     </div>
                 ))}
              </div>
